@@ -1,10 +1,12 @@
 <script>
 	import Accordion from './Accordion';
 
-	if (typeof window !== 'undefined') {
-		console.log('initializing accordion');
-		window.HSAccordion = new Accordion();
-		window.HSAccordion.init();
+	if (typeof window !== 'undefined' ) {
+		if( !window.HSAccordion ) {
+			console.log('initializing accordion');
+			window.HSAccordion = new Accordion();
+			window.HSAccordion.init();
+		}
 	}
 	export let name, expandable = false, id=name, selected;
 </script>
