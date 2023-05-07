@@ -8,7 +8,7 @@
 			window.HSDropdown.init();
 		}
 	}
-	export let name, email, id = name, cls =''
+	export let name, cls =''
 </script>
 
 <div class={`${cls} hs-dropdown relative inline-flex [--placement:bottom-right]`}>
