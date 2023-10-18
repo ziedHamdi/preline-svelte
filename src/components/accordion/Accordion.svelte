@@ -10,9 +10,9 @@
 		<a class='flex flex-row flex-nowrap items-center text-xl font-semibold dark:text-white' href='https://cvlink.in'
 			 aria-label='CvLink'>
 			<img
-				src='/images/logo32.png'
+				src='/images/logo128.svg'
 				class='mr-3 h-6 sm:h-9'
-				alt='Flowbite Logo'
+				alt='CvLink Logo'
 			/>CvLink
 		</a>
 	</div>

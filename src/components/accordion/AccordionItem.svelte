@@ -1,19 +1,30 @@
 <script>
 	import Accordion from './Accordion';
+	import { onMount } from 'svelte';
+	import log from 'loglevel';
 
 	if (typeof window !== 'undefined' ) {
 		if( !window.HSAccordion ) {
-			console.log('initializing accordion');
+			log.debug('initializing accordion');
 			window.HSAccordion = new Accordion();
 			window.HSAccordion.init();
 		}
 	}
-	export let name, expandable = false, id=name, selected;
+	// @type(selected):{name:String, tree:[String]} (tree is the path until the selected item)
+	export let name, selected, expandable = false, id=name, href='#', open = false;
+	let current
+
+
+	onMount(()=>{
+		if( open ) {
+			window.HSAccordion.show(current)
+		}
+	})
 </script>
 
-<li class={expandable ? 'hs-accordion' : ''} id={id}>
-	<a
-		class={`${selected === id? 'bg-gray-100' : ''} cursor-pointer hs-accordion-toggle flex items-center gap-x-3.5 py-2 px-2.5 hs-accordion-active:text-blue-600 hs-accordion-active:hover:bg-transparent text-sm text-slate-700 rounded-md hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300 dark:hs-accordion-active:text-white`}
+<li class={expandable ? 'hs-accordion' : ''} bind:this={current} id={id} on:click>
+	<a {href}
+		class={`${selected.name === id || open ? 'bg-gray-100' : ''} cursor-pointer hs-accordion-toggle flex items-center gap-x-3.5 py-2 px-2.5 hs-accordion-active:text-blue-600 hs-accordion-active:hover:bg-transparent text-sm text-slate-700 rounded-md hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300 dark:hs-accordion-active:text-white`}
 		>
 		<slot name='icon' />
 		<slot name='name'>{name}</slot>
